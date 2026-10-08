@@ -2,7 +2,7 @@
 
 A starter project for running a **book second brain** on top of agentic coding assistants ([OpenCode](https://opencode.ai), Claude Code, Cursor) — drop PDFs in, the agent converts them to Markdown, distills them into interlinked wiki pages, and answers questions with summaries synthesized across your whole library.
 
-Inspired by (and sibling to) the [personal-assistant template](https://github.com/mgonzalezbaile/personal-assistant). Ships with:
+Heavily inspired by [Maikel's personal-assistant template](https://github.com/mgonzalezbaile/personal-assistant) — a sibling project worth checking out. Ships with:
 
 - **Ingest pipeline** (`skills/ingest-book/`) — PDF → Markdown ([MarkItDown](https://github.com/microsoft/markitdown)) → distilled book page → cross-links → catalog
 - **Summarize skill** (`skills/summarize/`) — layered summaries of a single book, or topic-mode synthesis across every book you've ingested
