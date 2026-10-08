@@ -27,10 +27,32 @@ python3 -m venv ~/.venvs/markitdown
 
 ## Quick start
 
+### Option A — Use this template (recommended)
+
+Click **Use this template** at the top of the GitHub page, or:
+
 ```bash
-git clone https://github.com/<you>/books-assistant.git ~/repos/books-assistant
+gh repo create <you>/books-assistant --template m4t1t0/books-assistant-template --private --clone ~/repos/books-assistant
 cd ~/repos/books-assistant
 ```
+
+GitHub template repos carry no shared history and no `origin` remote — your copy is fully yours from the first commit, and you can never accidentally push back to the template.
+
+### Option B — Plain clone
+
+```bash
+git clone https://github.com/m4t1t0/books-assistant-template.git ~/repos/books-assistant
+cd ~/repos/books-assistant
+```
+
+⚠️ A plain clone keeps the template as your `origin`. Cut the ties before committing anything:
+
+```bash
+chmod +x scripts/setup/fresh-git-init.sh && ./scripts/setup/fresh-git-init.sh
+gh repo create <you>/books-assistant --private --source . --push   # optional, creates your own remote
+```
+
+The script wipes `.git` (and the link to the template repo with it), re-initializes a fresh history, and tells you how to add your own remote.
 
 Open the folder with your agent of choice and start a session. Then:
 
