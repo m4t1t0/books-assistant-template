@@ -1,3 +1,8 @@
+---
+name: Ingest Book
+description: Ingest a PDF book from sources/ into the library — convert to Markdown, distill into a wiki page, wire cross-links, update the catalog, delete the PDF
+---
+
 # Skill: ingest-book
 
 Ingest a PDF book into the library: convert to Markdown, distill into a wiki
@@ -35,7 +40,7 @@ page, wire cross-links, update the catalog, and clean up.
 6. **Cleanup**: delete the PDF from `sources/`.
 7. **Report**: tell the user which pages were created/updated.
 
-##slug conventions
+## Slug conventions
 
 - Book pages: `library/books/<author-slug>/<title-slug>.md` (e.g. `sam-newman/building-microservices.md`)
 - Author slugs: lowercase, hyphenated (`sam-newman`)

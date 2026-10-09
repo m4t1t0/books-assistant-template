@@ -1,3 +1,8 @@
+---
+name: Summarize
+description: Summarize a single book from the library, or synthesize a topic across all ingested books, citing sources inline
+---
+
 # Skill: summarize
 
 Produce summaries from the library: a single book, or a synthesis of a topic
