@@ -14,10 +14,13 @@ Follow this protocol at the start of every session:
 
 This repository is {{NAME}}'s second brain for books. PDFs are ingested
 into Markdown, distilled into wiki pages in `library/`, and connected through
-topics and cross-links. The two core capabilities:
+topics and cross-links. The core capabilities:
 
 - **ingest-book** — convert a PDF (`sources/`) and distill it into the library
 - **summarize** — summarize a single book, or synthesize a topic across books
+- **deep-summary** — in-depth study summary as a typeset PDF (`exports/`,
+  via pandoc + typst): one-paragraph thesis, expanded key ideas, one page per
+  chapter, extended evidence and connections
 
 ## Deep-Dive Navigation
 
@@ -47,4 +50,5 @@ mirrored via symlink into `.opencode/skills/`.
 - **library/AGENTS.md** — navigation hub for the library wiki
 - **sources/** — raw PDFs awaiting ingest
 - **fulltext/** — converted Markdown of ingested books (kept forever)
-- **skills/** — ingest-book and summarize capabilities
+- **exports/** — generated artifacts (deep-summary Markdown + PDFs)
+- **skills/** — ingest-book, summarize, and deep-summary capabilities

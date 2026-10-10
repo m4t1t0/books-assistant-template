@@ -6,6 +6,7 @@ Heavily inspired by [Maikel's personal-assistant template](https://github.com/mg
 
 - **Ingest pipeline** (`skills/ingest-book/`) — PDF → Markdown ([MarkItDown](https://github.com/microsoft/markitdown)) → distilled book page → cross-links → catalog
 - **Summarize skill** (`skills/summarize/`) — layered summaries of a single book, or topic-mode synthesis across every book you've ingested
+- **Deep-summary skill** (`skills/deep-summary/`) — in-depth study-summary PDFs for books you check frequently: one-paragraph thesis, expanded key ideas, one page per chapter, extended evidence and library connections — typeset with [Typst](https://typst.app) via [Pandoc](https://pandoc.org)
 - **Library wiki** (`library/`) — one page per book, topic pages built from a controlled vocabulary, author pages, and a catalog hub
 - **Full-text archive** (`fulltext/`) — the complete converted Markdown of every book, kept forever for deep, chapter-level queries
 
@@ -21,6 +22,12 @@ Clone, drop in a PDF, ask your agent to ingest it — you're done.
 ```bash
 python3 -m venv ~/.venvs/markitdown
 ~/.venvs/markitdown/bin/pip install 'markitdown[pdf]'
+```
+
+- [Pandoc](https://pandoc.org) + [Typst](https://typst.app) for the `deep-summary` PDF output (optional — only needed to typeset deep summaries):
+
+```bash
+brew install pandoc typst
 ```
 
 - macOS or Linux. Tested on macOS.
@@ -63,6 +70,9 @@ Open the folder with your agent of choice and start a session. Then:
 3. **Ask questions** — the two reading skills:
    > Summarize Building Microservices
    > What do my books say about scaling?
+   Or go deeper with a typeset study PDF for books you re-check often:
+   > Deep summary of Team Topologies
+   The agent reads the full text chapter by chapter and writes `exports/<book>-deep-summary.pdf`: a one-paragraph thesis, expanded key ideas, one page per chapter, extended verbatim evidence, and extended library connections.
 4. **Grow the web** — every new book links into existing topics and book pages. The more you ingest, the better topic-mode synthesis gets.
 
 ## What's in the box
@@ -77,9 +87,11 @@ Open the folder with your agent of choice and start a session. Then:
 │   └── people/               author pages
 ├── sources/                  drop raw PDFs here for ingestion (processed ones are deleted)
 ├── fulltext/                 converted Markdown of every book (kept forever, gitignore me if you prefer)
+├── exports/                  generated artifacts: deep-summary Markdown + PDFs (transient, regenerate freely)
 └── skills/
     ├── ingest-book/          PDF → md → wiki page → cross-links → catalog
-    └── summarize/            book summaries and cross-book topic syntheses
+    ├── summarize/            book summaries and cross-book topic syntheses
+    └── deep-summary/         in-depth study summaries typeset to PDF (pandoc + typst)
 ```
 
 ### Skills
@@ -88,6 +100,7 @@ Open the folder with your agent of choice and start a session. Then:
 | --- | --- | --- |
 | `ingest-book` | Convert, distill, cross-link, catalog, cleanup | `markitdown` |
 | `summarize` | Single-book summaries + topic synthesis across books | none |
+| `deep-summary` | In-depth study-summary PDF: one-paragraph thesis, one page per chapter, extended evidence and connections | `pandoc` + `typst` |
 
 ## Design principles
 
