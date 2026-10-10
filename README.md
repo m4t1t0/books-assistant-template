@@ -67,12 +67,14 @@ Open the folder with your agent of choice and start a session. Then:
 2. **Ingest your first book** — drop a PDF into `sources/`, then tell your agent:
    > Ingest the book in sources/
    The agent converts it, writes `library/books/<author>/<title>.md`, wires cross-links and topic tags, updates the catalog, and deletes the PDF.
-3. **Ask questions** — the two reading skills:
+3. **Ask questions** — the three reading skills are also slash commands (`.opencode/commands/`):
+   > /summarize Building Microservices
+   > /summarize scaling
+   > /deep-summary Team Topologies
+   Plain-language prompts work identically:
    > Summarize Building Microservices
-   > What do my books say about scaling?
-   Or go deeper with a typeset study PDF for books you re-check often:
    > Deep summary of Team Topologies
-   The agent reads the full text chapter by chapter and writes `exports/<book>-deep-summary.pdf`: a one-paragraph thesis, expanded key ideas, one page per chapter, extended verbatim evidence, and extended library connections.
+   The deep-summary skill reads the full text chapter by chapter and writes `exports/<book>-deep-summary.pdf`: a one-paragraph thesis, expanded key ideas, one page per chapter, extended verbatim evidence, and extended library connections.
 4. **Grow the web** — every new book links into existing topics and book pages. The more you ingest, the better topic-mode synthesis gets.
 
 ## What's in the box
@@ -80,6 +82,7 @@ Open the folder with your agent of choice and start a session. Then:
 ```
 .
 ├── AGENTS.md                 persistent assistant instructions (loaded every session)
+├── .opencode/commands/       slash commands (thin wrappers into each skill's pipeline)
 ├── library/
 │   ├── AGENTS.md             catalog hub: every book, topic, and author is registered here
 │   ├── books/<author>/       one distilled page per ingested book
@@ -96,11 +99,13 @@ Open the folder with your agent of choice and start a session. Then:
 
 ### Skills
 
-| Skill | Purpose | External deps |
-| --- | --- | --- |
-| `ingest-book` | Convert, distill, cross-link, catalog, cleanup | `markitdown` |
-| `summarize` | Single-book summaries + topic synthesis across books | none |
-| `deep-summary` | In-depth study-summary PDF: one-paragraph thesis, one page per chapter, extended evidence and connections | `pandoc` + `typst` |
+| Skill | Purpose | External deps | Slash command |
+| --- | --- | --- | --- |
+| `ingest-book` | Convert, distill, cross-link, catalog, cleanup | `markitdown` | `/ingest-book` |
+| `summarize` | Single-book summaries + topic synthesis across books | none | `/summarize` |
+| `deep-summary` | In-depth study-summary PDF: one-paragraph thesis, one page per chapter, extended evidence and connections | `pandoc` + `typst` | `/deep-summary` |
+
+Slash commands are thin wrappers in `.opencode/commands/` that pass arguments into the skill's pipeline — the skills themselves are agent-auto-triggerable without them.
 
 ## Design principles
 

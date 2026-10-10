@@ -1,4 +1,6 @@
-.opencode/
+.opencode/*
+!.opencode/commands/
+.opencode/skills
 .DS_Store
 fulltext/*.md
 exports/
